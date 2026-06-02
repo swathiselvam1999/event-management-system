@@ -22,7 +22,7 @@ const EventDetails = () => {
     const fetchEvent = async () => {
       try {
         dispatch(setEventLoading(true));
-        const res = await axios.get(`${API_URL}/api/events/${id}`);
+        const res = await axios.get(`${API_URL}api/events/${id}`);
         dispatch(setEvent(res.data));
         dispatch(setEventLoading(false));
       } catch (err) {
@@ -60,16 +60,17 @@ const EventDetails = () => {
   };
 
   return (
-    <div
-      className="relative bg-cover bg-center h-screen"
-      style={{ backgroundImage: `url(${event.image})` }}
-    >
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-      <div className="relative z-10 text-white p-6 max-w-5xl mx-auto shadow-2xl shadow-gray-300">
+    // <div
+    //   className="relative bg-cover bg-center h-screen"
+    //   style={{ backgroundImage: `url(${event.image})` }}
+    // >
+      <div className="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 h-screen">
+      {/* <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div> */}
+      <div className="relative z-10 text-white p-6 max-w-5xl mx-auto shadow-2xl">
         <img
           src={event.image}
           alt={event.title}
-          className="w-full h-56 object-cover rounded"
+          className=" h-56 object-cover rounded"
         />
         <h2 className="text-3xl font-bold mt-4">{event.title}</h2>
         <p className=" mt-2">

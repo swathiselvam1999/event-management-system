@@ -19,7 +19,7 @@ const MyBookings = () => {
     const fetchBookings = async () => {
       try {
         dispatch(setBookingLoading(true));
-        const res = await axios.get(`${API_URL}/api/bookings/my`, {
+        const res = await axios.get(`${API_URL}api/bookings/my`, {
           headers:{
             Authorization: `Bearer ${token}`
           }
@@ -37,7 +37,7 @@ const MyBookings = () => {
     if(!token) return;
 
     try {
-      await axios.delete(`${API_URL}/api/bookings/${id}`, {
+      await axios.delete(`${API_URL}api/bookings/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

@@ -18,7 +18,7 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(`${API_URL}/auth/register`, {
+      const { data } = await axios.post(`${API_URL}auth/register`, {
         name,
         email,
         password,

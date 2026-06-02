@@ -38,7 +38,7 @@ const BookingForm = () => {
     e.preventDefault();
     try {
       dispatch(setBookingLoading(true));
-      const res = await axios.post(`${API_URL}/api/bookings`, {
+      const res = await axios.post(`${API_URL}api/bookings`, {
         eventId: event._id,
         tickets: formData.tickets,
       },
@@ -64,7 +64,7 @@ const BookingForm = () => {
     if (!events.find((e) => e._id === id) && !localEvent) {
       const fetchEvent = async () => {
         try {
-          const res = await axios.get(`${API_URL}/api/events/${id}`);
+          const res = await axios.get(`${API_URL}api/events/${id}`);
           setLocalEvent(res.data);
         } catch (err) {
           console.error(`Error: ${err.message}`);

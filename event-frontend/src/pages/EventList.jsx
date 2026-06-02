@@ -16,7 +16,7 @@ const EventList = () => {
     const fetchEvents = async()=>{
       try{
         dispatch(setLoading(true))
-        const res = await axios.get(`${API_URL}/api/events`)
+        const res = await axios.get(`${API_URL}api/events`)
         dispatch(setEvents(res.data));
         dispatch(setLoading(false));
       }catch(err){
@@ -47,7 +47,7 @@ const EventList = () => {
   if (error) return <p className="text-center mt-10 text-red-500">{error}</p>;
 
   return (
-    <div className=" p-6">
+    <div className=" p-6 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 h-[100vh]">
       <h1 className="text-2xl font-semibold mb-3">Upcoming Events</h1>
 
       <div className="flex flex-col md:flex-row md:items-center md:space-x-4 ">
