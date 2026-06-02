@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node server/index.js",
+    "start": "node server.js",
     "server": "cd event-backend && nodemon server.js",
     "client": "cd event-frontend && npm run dev",
     "dev": "concurrently \"npm run server\" \"npm run client\""
