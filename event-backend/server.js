@@ -1,5 +1,5 @@
 import dotenv from "dotenv"
-dotenv.config();
+dotenv.config({ path: ".env" , quiet: true })
 // console.log("ENV CHECK:", process.env.MAIL_USER, process.env.PORT)
 import express from "express"
 import cors from "cors"
