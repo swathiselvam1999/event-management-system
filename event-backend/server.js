@@ -9,7 +9,6 @@ import bookingRouter from "./routes/bookingRoute.js"
 import authRoutes from "./routes/authRoute.js"
 import compression from "compression";
 
-
 connectDB();
 
 const PORT = process.env.PORT || 3000;
