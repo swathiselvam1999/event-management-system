@@ -1,24 +1,10 @@
-import nodemailer from "nodemailer";
-import dns from "dns";
-
-dns.setDefaultResultOrder("ipv4first");
+import { Resend } from 'resend';
 
 const sendMail = async ({ to, subject, html }) => {
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS
-    },
-    tls: {
-      rejectUnauthorized: false
-    }
-  });
-
-  await transporter.sendMail({
-    from: `"Eventify" <${process.env.MAIL_USER}>`,
+  const resend = new Resend(process.env.RESEND_API_KEY);
+  
+  await resend.emails.send({
+    from: 'Eventify <onboarding@resend.dev>',
     to,
     subject,
     html

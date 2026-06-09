@@ -21,7 +21,8 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.18.2",
-    "nodemailer": "^8.0.10"
+    "nodemailer": "^8.0.10",
+    "resend": "^6.12.4"
   },
   "devDependencies": {
     "baseline-browser-mapping": "^2.10.34",
