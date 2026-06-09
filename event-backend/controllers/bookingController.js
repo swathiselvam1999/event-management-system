@@ -37,32 +37,37 @@ const addBooking = async (req, res) => {
     });
 
     // Send booking confirmation email
-    await sendMail({
-      to: req.user.email,
-      subject: "Booking Confirmed – Eventify 🎉",
-      html: `
-        <div style="font-family: Arial, sans-serif; padding: 20px;">
-          <h2 style="color: #4F46E5;">Booking Confirmed!</h2>
-          <p>Hi <strong>${req.user.name}</strong>,</p>
-          <p>Your booking has been confirmed. Here are your details:</p>
-          <table style="border-collapse: collapse; width: 100%;">
-            <tr>
-              <td style="padding: 8px; border: 1px solid #ddd;"><strong>Event ID</strong></td>
-              <td style="padding: 8px; border: 1px solid #ddd;">${eventId}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px; border: 1px solid #ddd;"><strong>Tickets</strong></td>
-              <td style="padding: 8px; border: 1px solid #ddd;">${tickets}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px; border: 1px solid #ddd;"><strong>Name</strong></td>
-              <td style="padding: 8px; border: 1px solid #ddd;">${req.user.name}</td>
-            </tr>
-          </table>
-          <p style="margin-top: 20px;">Thank you for booking with <strong>Eventify</strong>!</p>
-        </div>
-      `
-    });
+    try {
+      await sendMail({
+        to: req.user.email,
+        subject: "Booking Confirmed – Eventify 🎉",
+        html: `
+          <div style="font-family: Arial, sans-serif; padding: 20px;">
+            <h2 style="color: #4F46E5;">Booking Confirmed!</h2>
+            <p>Hi <strong>${req.user.name}</strong>,</p>
+            <p>Your booking has been confirmed. Here are your details:</p>
+            <table style="border-collapse: collapse; width: 100%;">
+              <tr>
+                <td style="padding: 8px; border: 1px solid #ddd;"><strong>Event ID</strong></td>
+                <td style="padding: 8px; border: 1px solid #ddd;">${eventId}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px; border: 1px solid #ddd;"><strong>Tickets</strong></td>
+                <td style="padding: 8px; border: 1px solid #ddd;">${tickets}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px; border: 1px solid #ddd;"><strong>Name</strong></td>
+                <td style="padding: 8px; border: 1px solid #ddd;">${req.user.name}</td>
+              </tr>
+            </table>
+            <p style="margin-top: 20px;">Thank you for booking with <strong>Eventify</strong>!</p>
+          </div>
+        `
+      });
+      console.log("Email sent successfully to:", req.user.email);
+    } catch (mailErr) {
+      console.error("Email sending failed:", mailErr.message);
+    }
 
     res.status(201).json(newBooking);
   } catch (err) {

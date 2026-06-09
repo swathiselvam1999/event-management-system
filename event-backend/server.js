@@ -1,13 +1,15 @@
+import dotenv from "dotenv"
+dotenv.config();
+// console.log("ENV CHECK:", process.env.MAIL_USER, process.env.PORT)
 import express from "express"
 import cors from "cors"
-import dotenv from "dotenv"
 import connectDB from "./db.js";
 import eventRouter from "./routes/eventRoute.js"
 import bookingRouter from "./routes/bookingRoute.js"
 import authRoutes from "./routes/authRoute.js"
 import compression from "compression";
 
-dotenv.config();
+
 connectDB();
 
 const PORT = process.env.PORT || 3000;

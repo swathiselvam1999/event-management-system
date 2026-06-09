@@ -1,20 +1,20 @@
 import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
+const sendMail = async ({ to, subject, html }) => {
+  const transporter = nodemailer.createTransport({
     service: "gmail",
-    auth:{
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS
+    auth: {
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASS
     }
-});
+  });
 
-const sendMail = async({to, subject, html})=>{
-    await transporter.sendMail({
-        from: `"Eventify" <${process.env.MAIL_USER}>`,
-        to,
-        subject,
-        html
-    });
+  await transporter.sendMail({
+    from: `"Eventify" <${process.env.MAIL_USER}>`,
+    to,
+    subject,
+    html
+  });
 };
 
 export default sendMail;
