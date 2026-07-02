@@ -8,33 +8,41 @@ const Navbar = () => {
   const {userInfo} = useSelector((state)=>state.userAuth)
   const dispatch = useDispatch();
   return (
-    <nav className='flex justify-between p-4 bg-blue-400 text-white'>
-        <Link to="/">
-          <h1 className='text-xl font-bold cursor-pointer'>
-            Event Booking
+    <nav className='flex items-center justify-between px-6 py-4 bg-ink text-paper sticky top-0 z-50'>
+        <Link to="/" className="flex items-center gap-2">
+          <span className='w-2 h-2 rounded-full bg-coral'></span>
+          <h1 className='font-display text-xl font-semibold tracking-tight cursor-pointer'>
+            Eventify
           </h1>
         </Link>
-        <div className='flex gap-4'>
+
+        <div className='flex items-center gap-4 sm:gap-6 font-medium text-sm'>
+            <Link to="/" className="hover:text-coral transition-colors">Events</Link>
+            <Link to="/mybookings" className="hover:text-coral transition-colors">My Bookings</Link>
+        </div>
+
+        <div className='flex items-center gap-4 text-sm'>
           {userInfo ? (
             <>
-            <span>{userInfo.name}</span>
-            <button 
+            <span className="hidden sm:inline text-paper/60">Hi, {userInfo.name}</span>
+            <button
               onClick={()=> dispatch(logout())}
-              className="bg-red-500 px-3 py-1 rounded"
+              className="bg-coral/90 hover:bg-coral text-white px-4 py-1.5 rounded-full font-medium transition-colors"
             >
               Logout
             </button>
             </>
           ):(
-<>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <>
+            <Link to="/login" className="hover:text-coral transition-colors">Login</Link>
+            <Link
+              to="/register"
+              className="bg-coral hover:bg-coral/90 text-white px-4 py-1.5 rounded-full font-medium transition-colors"
+            >
+              Register
+            </Link>
           </>
           )}
-        </div>
-        <div className='space-x-4 font-bold'>
-            <Link to="/">Home</Link>
-            <Link to="/mybookings">My Bookings</Link>
         </div>
     </nav>
   )

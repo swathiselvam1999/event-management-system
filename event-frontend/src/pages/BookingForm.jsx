@@ -76,40 +76,53 @@ const BookingForm = () => {
 
   // ✅ Guard against undefined event
   if (!event) {
-    return <p className="text-red-500">Event not found.</p>;
+    return <p className="text-center py-20 text-danger bg-paper min-h-screen">Event not found.</p>;
   }
 
-  if (loading) return <p className="text-center mt-10">Loading events...</p>;
-  if (error) return <p className="text-center mt-10 text-red-500">{error}</p>;
+  if (loading) return <p className="text-center py-20 text-slate bg-paper min-h-screen">Loading events...</p>;
+  if (error) return <p className="text-center py-20 text-danger bg-paper min-h-screen">{error}</p>;
 
   return (
-    <div className="max-w-2xl mx-auto p-10 shadow-2xl rounded">
-      <h3 className="text-2xl font-bold mb-4">Book :{event.title}</h3>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <p>
-          Booking as: <span className="font-semibold">{userInfo?.name}</span> (
-          {userInfo?.email})
-        </p>
-
-        <div>
-          <label htmlFor="tickets">Tickets</label>
-          <input
-            type="number"
-            name="tickets"
-            placeholder="Enter number of tickets"
-            value={formData.tickets}
-            min="1"
-            onChange={handleChange}
-            className="w-full border px-3 py-2 rounded"
-          />
+    <div className="min-h-[85vh] flex items-center justify-center bg-paper px-4 py-10">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl ring-1 ring-black/5 overflow-hidden">
+        <div className="bg-ink text-paper px-6 py-5">
+          <p className="text-xs uppercase tracking-widest text-paper/60 font-mono">Booking</p>
+          <h3 className="font-display text-2xl font-semibold mt-1">{event.title}</h3>
         </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-400 rounded py-2 text-white"
-        >
-          Confirm Booking
-        </button>
-      </form>
+
+        <form onSubmit={handleSubmit} className="p-6 space-y-5">
+          <div className="flex items-center justify-between text-sm bg-paper rounded-xl px-4 py-3">
+            <span className="text-slate">Booking as</span>
+            <span className="font-semibold text-ink text-right">
+              {userInfo?.name}
+              <br />
+              <span className="font-mono text-xs text-slate">{userInfo?.email}</span>
+            </span>
+          </div>
+
+          <div>
+            <label htmlFor="tickets" className="block text-sm font-medium text-ink mb-1.5">
+              Number of tickets
+            </label>
+            <input
+              type="number"
+              name="tickets"
+              placeholder="Enter number of tickets"
+              value={formData.tickets}
+              min="1"
+              onChange={handleChange}
+              className="w-full border border-black/10 focus:border-coral focus:ring-2 focus:ring-coral/20 outline-none px-4 py-2.5 rounded-xl font-mono transition-all"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-coral hover:bg-coral/90 text-white font-semibold rounded-xl py-3 transition-colors"
+          >
+            Confirm Booking
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
